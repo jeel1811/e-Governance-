@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>e-Governanace</title>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+
+  </head>
+
+
+  <body class="font-sans bg-gray-100">
+
+    <div id="root">
+      <div class="sticky top-0 bg-blue-900 z-50 w-full">
+            <header class="grid grid-cols-[auto_1fr_auto] items-center p-3">
+              <div class="flex items-center">
+                <!-- Hamburger menu in nav bar in egov module-->
+                <div class="flex flex-col space-y-1">
+                
+                  <span class="text-3xl cursor-pointer mx-2 block text-white">
+                    <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+                  </span>
+
+                  <ul class="absolute bg-slate-200 w-full left-0 py-4  pl-7  opacity-0 top-[-400px] transition-all ease-in duration-200 shadow-2xl ">
+                    <li class="mx-4 my-2">
+                      <a href="profile.html" class="text-xl hover:text-sky-950 duration-300" >Profile</a>
+                    </li>
+                    <li class="mx-4 my-2">
+                        <a href="fee-receipt" class="text-xl hover:text-sky-950 duration-300" >Fees Receipt</a>
+                    </li>
+                    <li class="mx-4 my-2">
+                        <a href="councilling-detail" class="text-xl hover:text-sky-950 duration-300" >Student Counselling Detail</a>
+                    </li>
+                    <li class="mx-4 my-2">
+                        <a href="logout" class="text-xl hover:text-sky-950 duration-300" >Faculty information</a>
+                    </li>
+                    <li class="mx-4 my-2">
+                        <a href="leave-application" class="text-xl hover:text-sky-950 duration-300" >Medical Leave Application</a>
+                    </li>
+                    <li class="mx-4 my-2">
+                        <a href="scholarship" class="text-xl hover:text-sky-950 duration-300" >Govt. Scholarship Application</a>
+                    </li>
+                    <li class="mx-4 my-2">
+                        <a href="logout" class="text-xl hover:text-sky-950 duration-300" >Logout</a>
+                    </li> 
+                    
+                  </ul>
+                  <script>
+                    //For the toggle menu in navbar
+                    function Menu(e) {
+                      let list = document.querySelector("ul");
+                      e.name === "menu" ? ((e.name = "close"), list.classList.add("top-[80px]"), list.classList.add("opacity-100"))
+                        : ((e.name = "menu"), list.classList.remove("top-[80px]"), list.classList.remove("opacity-100"));
+                    }
+                  </script>
+                </div>
+
+                <!-- School/collage logo -->
+                <a href="index.html">
+                    <img 
+                    src="https://i.ibb.co/zGfdXQ0/Capture.png" 
+                    alt="Logo"
+                    class="h-10 ml-5"
+                  />
+                  </a>
+                <span class="text-white text-2xl ml-5 md:block hidden">e-Governance</span>
+
+                <!-- Dashboard module -->
+                <div class="relative">
+                  <span class="text-3xl text-white cursor-pointer md:mx-7 mx-5 flex flex-col items-center space-y-1">
+                      <ion-icon name="albums" onclick="Dashboard(this)"></ion-icon>
+                  </span>
+                  <ul id="egovmodule" class="absolute w-60 h-auto left-1/2 transform -translate-x-1/2 bg-slate-200 py-4 mt-4 rounded-md shadow-lg hidden">
+                      <li class="relative justify-center items-center text-center h-full space-y-3">
+                          <a href="index.html" class="text-xl hover:text-blue-900 duration-300 block">Dashboard</a>
+                          <a href="calendar" class="text-xl hover:text-blue-900 duration-300 block">Acadamic Calander</a>
+                      </li>
+                  </ul>
+                </div>
+
+                <!-- Notification Pannel Relative for the top bottom menu -->
+                <div class="relative">
+                <span class="text-3xl text-white cursor-pointer md:mx-5 mx-3 flex flex-col items-center space-y-1">
+                    <ion-icon name="notifications" onclick="Notification_egov(this)"></ion-icon>
+                </span>
+                    <ul id="notifiaction-egov" class="absolute w-60 h-80 left-1/2 transform -translate-x-5 bg-slate-400 py-4 mt-5 rounded-md shadow-lg hidden">
+                        <li class="flex justify-center items-center h-full">
+                            <p>No new Notifications.</p>
+                    </li>
+                  </ul>
+                </div>
+                
+                <script>
+                    function Dashboard(e) {
+                      let list = document.getElementById("egovmodule");
+                      list.classList.toggle("hidden");
+                  }
+                    function Notification_egov(e) {
+                      let list = document.getElementById("notifiaction-egov");
+                      list.classList.toggle("hidden");
+                  }
+                  
+              </script>
+              </div>
+
+              <div class="flex items-center justify-end ">
+                <ul class="flex items-center list-none p-0 m-0 text-white">
+
+                  <!-- User profile -->
+                  <li class="ml-5 flex items-center">
+                    <span id="user-name" class="mr-2">Welcome, Student Name</span>
+                    <img class="h-11 w-11 rounded-full border-2 border-white "
+                      id="user-profile" src="https://randomuser.me/api/portraits/men/75.jpg" alt="user-profile"/>
+                  </li>
+                </ul>
+              </div>
+            </header>
+      </div>
+
+      <!-- Slider Menu -->
+      <div class="relative mt-4 w-full h-[20rem] md:h-[30rem] ">
+        <div class="overflow-hidden rounded-md mx-2">
+          <div class="flex transition-transform duration-500 ease-in-out" id="slider">
+              <div class="min-w-full flex items-center justify-center md:h-[30rem] h-[20rem]">
+                <img src="https://programmingduck.com/wp-content/uploads/2021/05/w-alan-PMjhRmQqEJg-unsplash-scaled.jpg" alt="Image 1" srcset="">
+              </div>
+              <div class="min-w-full flex items-center justify-center md:h-[30rem] h-[20rem]">
+                <img src="https://wowslider.com/sliders/demo-93/data1/images/landscape.jpg" alt="Image 2" srcset="">
+              </div>
+              <div class="min-w-full flex items-center justify-center md:h-[30rem] h-[20rem]">
+                <img src="https://wowslider.com/sliders/demo-93/data1/images/sunset.jpg" alt="Image 3" srcset="">
+              </div>
+          </div>
+        
+          <button onclick="prevSlide()" type="button" class="mx-2 absolute inset-y-0 start-0 inline-flex justify-center items-center w-[46px] h-full text-black hover:bg-slate-400/40 rounded-s-lg">
+              <ion-icon class=" text-4xl" name="chevron-back-outline"></ion-icon>
+          </button>
+
+          <button onclick="nextSlide()" type="button" class="mx-2 absolute inset-y-0 end-0 inline-flex justify-center items-center w-[46px] h-full text-black hover:bg-slate-400/40 rounded-e-lg">
+              <ion-icon class="text-3xl" name="chevron-forward-outline"></ion-icon>
+            <span class="sr-only">Next</span>
+          </button>
+          
+        </div>
+
+        <script>
+          let currentSlide = 0;
+          function showSlide(index) {
+              const slider = document.getElementById('slider');
+              const slides = slider.children;
+              const totalSlides = slides.length;
+  
+              if (index >= totalSlides) {
+                  currentSlide = 0;
+              } else if (index < 0) {
+                  currentSlide = totalSlides - 1;
+              } else {
+                  currentSlide = index;
+              }
+  
+              const offset = -currentSlide * 100;
+              slider.style.transform = `translateX(${offset}%)`;
+          }
+  
+          function nextSlide() {
+              showSlide(currentSlide + 1);
+          }
+  
+          function prevSlide() {
+              showSlide(currentSlide - 1);
+          }
+  
+          // Auto slide
+          setInterval(() => {
+            nextSlide();
+          }, 5000);
+        </script>
+      </div>      
+
+      <!-- Footer -->
+      <footer class="bg-black text-white box-in mt-4 py-5 items-center">
+        <p class="text-center">© All Rights Reserved</p>
+      </footer>
+    </div>
+
+  </body>
+  </html>

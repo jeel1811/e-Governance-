@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+
+  <body class="font-sans bg-gray-200">
+
+    <div id="root">
+      <div class="sticky top-0 bg-blue-900 z-50 w-full">
+        <header class="grid grid-cols-[auto_1fr_auto] items-center p-3">
+          <div class="flex items-center">
+            <!-- Hamburger menu in nav bar in egov module-->
+            <div class="flex flex-col space-y-1">
+            
+              <span class="text-3xl cursor-pointer mx-2 block text-white">
+                <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+              </span>
+              <ul class="absolute bg-slate-200 w-full left-0 py-4  pl-7  opacity-0 top-[-400px] transition-all ease-in duration-200 shadow-2xl ">
+                <li class="mx-4 my-2">
+                    <a href="setting" class="text-xl hover:text-sky-950 duration-300" >Setting</a>
+                </li>
+                <li class="mx-4 my-2">
+                    <a href="logout" class="text-xl hover:text-sky-950 duration-300" >Logout</a>
+                </li> 
+              </ul>
+              <script>
+                //For the toggle menu in navbar
+                function Menu(e) {
+                  let list = document.querySelector("ul");
+                  e.name === "menu" ? ((e.name = "close"), list.classList.add("top-[80px]"), list.classList.add("opacity-100"))
+                    : ((e.name = "menu"), list.classList.remove("top-[80px]"), list.classList.remove("opacity-100"));
+                }
+              </script>
+            </div>
+            <!-- School/collage logo -->
+            <a href="index.html">
+                <img 
+                src="https://i.ibb.co/zGfdXQ0/Capture.png" 
+                alt="Logo"
+                class="h-10 ml-5"
+              />
+              </a>
+            <span class="text-white text-2xl ml-5 md:block hidden">User Profile</span>
+            <!-- Dashboard module -->
+            <div class="relative">
+              <span class="text-3xl text-white cursor-pointer md:mx-7 mx-5 flex flex-col items-center space-y-1">
+                  <ion-icon name="albums" onclick="Dashboard(this)"></ion-icon>
+              </span>
+              <ul id="egovmodule" class="absolute w-60 h-auto left-1/2 transform -translate-x-1/2 bg-slate-200 py-4 mt-4 rounded-md shadow-lg hidden">
+                <li class="relative justify-center items-center text-center h-full space-y-3">
+                  <a href="index.html" class="text-xl hover:text-blue-900 duration-300 block">Dashboard</a>
+                  <a href="egov.html" class="text-xl hover:text-blue-900 duration-300 block">e-Governance</a>
+                </li>
+              </ul>
+            </div>
+            <script>
+                function Dashboard(e) {
+                  let list = document.getElementById("egovmodule");
+                  list.classList.toggle("hidden");
+              }          
+            </script>
+            </div>
+            <!-- User profile -->
+            <div class="flex items-center justify-end">
+
+              <ul class="flex items-center list-none p-0 m-0 text-white">
+                <li class="ml-5 flex items-center">
+                  <span id="user-name" class="mr-2">Welcome, Student Name</span>
+                  <img class="h-11 w-11 rounded-full border-2 border-white "
+                  id="user-profile" src="https://randomuser.me/api/portraits/men/75.jpg" alt="user-profile"/>
+                </li>
+              </ul>
+            </div>
+        </header>
+        
+      </div>
+
+      <!-- User Edit and save -->
+      <div class="flex sticky mx-3 md:mt-3 top-24 md:top-16 z-40 bg-gray-500 justify-between">
+        <p class="text-white mx-4 rounded-t-xl p-2">User Edit</p>
+        <button class="bg-blue-500 text-white my-1 px-3 mr-7 rounded text-sm">Save</button>
+      </div>
+      <!-- <div class="flex fixed mx-3 md:mt-3 top-24 md:top-16 z-50 bg-gray-500 justify-between">
+        <p class="text-white mx-4 rounded-t-xl p-2">User Edit</p>
+        <button class="bg-blue-500 text-white py-1 px-3 mr-7 rounded text-sm">Save</button>
+      </div> -->
+    
+
+      <!-- User information edit -->
+      <div class="w-full user-info-edit p-3 pt-0 bg-gray-200">
+        <div class=" pt-2 bg-white drop-shadow-xl pb-5 ">
+          
+          <div class="general-information m-3 mt-0 border-2 shadow-xl">
+            <!-- General Information Section -->
+            <form>
+              <p class="bg-gray-200 p-2 font-bold">General Information</p>
+              <div class="grid md:grid-cols-1 gap-4 p-2 pb-6">
+
+                <!-- Main Grid -->
+                <div class="grid md:grid-cols-2 gap-7  relative">
+                  <!-- Profile Photo Section -->
+                  <div class="md:order-2 md:ml-auto md:mr-28">
+                      <div class="border border-gray-300 rounded-md w-32 h-32 bg-gray-100 mx-auto md:mx-0">
+                          <img id="profile-photo" src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile Photo" class="w-full h-full object-cover rounded-md">
+                      </div>
+                      <div class="flex space-x-5 mt-2 justify-center md:justify-start">
+                          <button class="bg-blue-500 text-white py-1 px-3 rounded">Edit</button>
+                          <button class="bg-red-500 text-white py-1 px-3 rounded">Clear</button>
+                      </div>
+                  </div>
+
+                  <div class="grid gap-7 md:order-1">
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                              <label for="student-id" class="block text-sm font-medium">Student ID</label>
+                              <input type="text" id="student-id" value="22IT038" class="mt-1 w-full md:w-40 border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                          </div>
+                          <div class="flex items-center">
+                              <label for="d2d-student" class="block text-sm font-medium">Is D2D Student</label>
+                              <input type="checkbox" id="d2d-student" disabled class="form-checkbox text-blue-500 mx-4">
+                          </div>
+                      </div>
+                      <div>
+                          <label for="registration-date" class="block text-sm font-medium">Registration Date</label>
+                          <input type="text" id="registration-date" value="" placeholder="DD/MM/YYYY" class="mt-1 w-full md:w-48 border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                      </div>
+                  </div>
+                </div>
+              
+                <!-- <hr class="h-1 bg-gray-500 opacity-35 border-0"> -->
+
+                <div>
+                  <label for="full-name" class="block text-sm font-medium">Full Name</label>
+                  <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
+                    <input type="text" id="last-name" value="" placeholder="Last Name" class="block w-full md:w-1/4 border border-gray-300 rounded-md shadow-sm py-2 px-3">
+                    <input type="text" id="first-name" value="" placeholder="First Name" class="block w-full md:w-1/4 border border-gray-300 rounded-md shadow-sm py-2 px-3">
+                    <input type="text" id="middle-name" value="" placeholder="Middle Name" class="block w-full md:w-1/4 border border-gray-300 rounded-md shadow-sm py-2 px-3">
+                  </div>
+                </div>
+                <div>
+                  <label for="display-name" class="block text-sm font-medium">Display Name</label>
+                  <input type="text" id="display-name" value="HIRANI JEEL HITENDRABHAI" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label for="fathers-name" class="block text-sm font-medium">Father's Name</label>
+                    <input type="text" id="fathers-name" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="mothers-name" class="block text-sm font-medium">Mother's Name</label>
+                    <input type="text" id="mothers-name" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                  <div>
+                    <label for="birth-date" class="block text-sm font-medium">Birth Date (DD/MM/YYYY)</label>
+                    <input type="date" id="birth-date" value="" class="mt-1 w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="birth-place" class="block text-sm font-medium">Birth Place</label>
+                    <input type="text" id="birth-place" class="mt-1 w-full block border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="gender" class="block text-sm font-medium">Gender</label>
+                    <select name="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                      <option value="none" selected disabled hidden>Select an Option</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="caste" class="block text-sm font-medium">Caste</label>
+                    <select name="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                      <option value="none" selected disabled hidden>Select an Option</option>
+                      <option value="open">OPEN</option>
+                      <option value="sc">SC</option>
+                      <option value="st">ST</option>
+                      <option value="obc">OBC</option>
+                      <option value="sebc">SEBC</option>
+                      <option value="ntdnt">NTDNT</option>
+                      <option value="ebc">EBC</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="religion" class="block text-sm font-medium">Religion</label>
+                    <select name="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                      <option value="none" selected disabled hidden>Select an Option</option>
+                      <option value="jain">Jain</option>
+                      <option value="muslim">Muslim</option>
+                      <option value="christian">Christian</option>
+                      <option value="hindu">Hindu</option>
+                      <option value="parsi">Parsi</option>
+                      <option value="buddhism">Buddhism</option>
+                      <option value="sikh">Sikh</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="subcaste" class="block text-sm font-medium">Subcaste</label>
+                    <input type="text" id="subcaste" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="nationality" class="block text-sm font-medium">Nationality</label>
+                    <input type="text" id="nationality" value="INDIAN" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="mother-tongue" class="block text-sm font-medium">Mother Tongue</label>
+                    <input type="text" id="mother-tongue" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                  <div>
+                    <label for="application-number" class="block text-sm font-medium">ACPC/ACPIMEC Application Number</label>
+                    <input type="text" id="application-number" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="acpc-merit" class="block text-sm font-medium">ACPC Merit (Rank)</label>
+                    <input type="text" id="acpc-merit" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="acpc-merit-marks" class="block text-sm font-medium">ACPC Merit Marks</label>
+                    <input type="text" id="acpc-merit-marks" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="admission-date" class="block text-sm font-medium">Admission Date (DD/MM/YYYY)</label>
+                    <input type="date" id="admission-date" value="" class="mt-1 w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="admission-year" class="block text-sm font-medium">Admission Year</label>
+                    <input type="text" id="admission-year" value="2022-23" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="admission-type" class="block text-sm font-medium">Admission Type</label>
+                    <select name="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                      <option value="none" selected disabled hidden>Select an Option</option>
+                      <option value="acpc">ACPC</option>
+                      <option value="managment">Management Quota</option>
+                      <option value="nri">NRI</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="university" class="block text-sm font-medium">University</label>
+                    <input type="text" id="university" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="institute" class="block text-sm font-medium">Institute</label>
+                    <input type="text" id="institute" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="program" class="block text-sm font-medium">Program</label>
+                    <input type="text" id="program" value="BTECH(IT)" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="blood-group" class="block text-sm font-medium">Blood Group</label>
+                    <input type="text" id="blood-group" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="aadhaar-number" class="block text-sm font-medium">Aadhaar Number</label>
+                    <input type="text" id="aadhaar-number" value="" placeholder="2870 9000 0025" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                </div>
+                <div>
+                  <label for="description" class="block text-sm font-medium">Description</label>
+                  <textarea id="description" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 sm:text-sm"></textarea>
+                </div>
+              </div>
+            </form>
+            
+          </div>
+          
+          <!-- General Information Ends -->
+
+          <!-- Academic Information Start -->
+          <div class="academic-innformation m-3 border-2 shadow-xl">
+            <form>
+              <p class="bg-gray-200 p-2 font-bold">Academic Information</p>
+
+              
+              <div class="grid md:grid-cols-1 gap-4 p-2 pb-6 text-gray-700">
+                <p class="p-2 font-medium">Last School/College Details</p>
+                <hr>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label for="country" class="block text-sm font-medium ">Country</label>
+                    <input type="text" id="student-id" value="India" class="mt-1 w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="state" class="block text-sm font-medium ">State</label>
+                    <input type="text" id="state" value="" class="mt-1 w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="city" class="block text-sm font-medium ">City</label>
+                    <input type="text" id="city" value="" class="mt-1 w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="school-name" class="block text-sm font-medium ">School/College Name</label>
+                    <input type="text" id="school-name" value="" class="mt-1 w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-7 md:p-10">             
+                  <div class="main-content bg-white rounded-lg md:p-5">
+                    <div class="overflow-x-auto md:w-full">
+
+                      <table class="w-full border-collapse mt-2">
+                        <thead>
+                          <tr class="bg-blue-500 text-white">
+                                  <th class="border border-gray-300 p-2 text-left">Exam</th>
+                                  <th class="border border-gray-300 p-2 text-left">Seat No.</th>
+                                  <th class="border border-gray-300 p-2 text-left">CGPA/% Obtained</th>
+                                  <th class="border border-gray-300 p-2 text-left">Percentile</th>
+                                  <th class="border border-gray-300 p-2 text-left">Year</th>
+                                  <th class="border border-gray-300 p-2 text-left">Month</th>
+                                  <th class="border border-gray-300 p-2 text-left">Board / University</th>
+                                  <th class="border border-gray-300 p-2 text-left">Group / Specialisation</th>
+                                  <th class="border border-gray-300 p-2 text-left">Action</th>
+                              </tr>
+                          </thead>
+                          <tbody id="table-body">
+                              <tr>
+                                  <td class="border border-gray-300 p-2">SSC</td>
+                                  <td class="border border-gray-300 p-2">C6150497</td>
+                                  <td class="border border-gray-300 p-2">61.33</td>
+                                  <td class="border border-gray-300 p-2">78.28</td>
+                                  <td class="border border-gray-300 p-2">2020</td>
+                                  <td class="border border-gray-300 p-2">MARCH</td>
+                                  <td class="border border-gray-300 p-2">G.S.E.B</td>
+                                  <td class="border border-gray-300 p-2">A</td>
+                                  <td class="border border-gray-300 p-2"><button class="text-red-500">Delete</button></td>
+                              </tr>
+                              <tr>
+                                  <td class="border border-gray-300 p-2">HSC</td>
+                                  <td class="border border-gray-300 p-2">B185278</td>
+                                  <td class="border border-gray-300 p-2">71.38</td>
+                                  <td class="border border-gray-300 p-2">81.85</td>
+                                  <td class="border border-gray-300 p-2">2022</td>
+                                  <td class="border border-gray-300 p-2">MARCH</td>
+                                  <td class="border border-gray-300 p-2">G.H.S.E.B</td>
+                                  <td class="border border-gray-300 p-2">A</td>
+                                  <td class="border border-gray-300 p-2"><button class="text-red-500" >Delete</button></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <div class="mt-4">
+                          <button class="bg-blue-500 text-white py-2 px-4 rounded">Add</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </form> 
+          </div>
+          <!-- Academic Information ends -->
+
+
+          <!-- Local Address Start -->
+          <div class="local-address m-3 border-2 shadow-xl">
+            <form>
+              <p class="bg-gray-200 p-2 font-bold">Local Address</p>
+
+              <div class="grid md:grid-cols-1 gap-4 p-2 pb-6 text-gray-700">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label for="room-number" class="block text-sm font-medium ">Room No./Flat No./Block No.</label>
+                    <input type="text" id="room-number" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="student-mobile" class="block text-sm font-medium ">Student's Mobile No</label>
+                    <input type="text" id="student-mobile" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="building-name" class="block text-sm font-medium ">Name of Building/ Premises/ Society/Sheri/Mahola</label>
+                    <input type="text" id="building-name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="phone-no" class="block text-sm font-medium ">Phone No</label>
+                    <input type="text" id="phone-no" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+
+                  <div>
+                    <label for="landmark" class="block text-sm font-medium ">Land Mark/Road/ Area/Locality etc.</label>
+                    <input type="text" id="landmark" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div></div>
+                  <div>
+                    <label for="city" class="block text-sm font-medium ">City/Town/Village</label>
+                    <input type="text" id="city" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="personal-email" class="block text-sm font-medium ">Personal Email</label>
+                    <input type="text" id="personal-email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="zip-code" class="block text-sm font-medium ">Zip/Postal Code</label>
+                    <input type="text" id="zip-code" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="Business-email" class="block text-sm font-medium ">Business Email</label>
+                    <input type="text" id="Business-email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="taluka" class="block text-sm font-medium ">Taluka/Tehsil</label>
+                    <input type="text" id="taluka" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="url" class="block text-sm font-medium ">URL</label>
+                    <input type="text" id="url" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="district" class="block text-sm font-medium ">District</label>
+                    <input type="text" id="district" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="emergency-no" class="block text-sm font-medium ">Emergency No.</label>
+                    <input type="text" id="emergency-no" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="state" class="block text-sm font-medium ">State</label>
+                    <input type="text" id="state" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div></div>
+                  <div>
+                    <label for="country" class="block text-sm font-medium ">Country</label>
+                    <input type="text" id="country" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                </div>
+                
+              </div>
+
+            </form> 
+          </div>
+          <!-- Local Address Ends -->
+            
+            
+          <!-- Permanent Address Start -->
+          <div class="general-information m-3 border-2 shadow-xl">
+            <form>
+              <p class="bg-gray-200 p-2 font-bold">Permanent Address</p>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 p-2 pb-6 text-gray-700">
+                <div>
+                  <label for="room-number-permanent" class="block text-sm font-medium ">Room No./Flat No./Block No.</label>
+                  <input type="text" id="room-number-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="student-mobile-permanent" class="block text-sm font-medium ">Student's Mobile No</label>
+                  <input type="text" id="student-mobile-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="building-name-permanent" class="block text-sm font-medium ">Name of Building/ Premises/ Society/Sheri/Mahola</label>
+                  <input type="text" id="building-name-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="phone-no-permanent" class="block text-sm font-medium ">Phone No</label>
+                  <input type="text" id="phone-no-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="landmark-permanent" class="block text-sm font-medium ">Land Mark/Road/ Area/Locality etc.</label>
+                  <input type="text" id="landmark-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div></div>
+                <div>
+                  <label for="city-permanent" class="block text-sm font-medium ">City/Town/Village</label>
+                  <input type="text" id="city-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="personal-email-permanent" class="block text-sm font-medium ">Personal Email</label>
+                  <input type="text" id="personal-email-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="zip-code-permanent" class="block text-sm font-medium ">Zip/Postal Code</label>
+                  <input type="text" id="zip-code-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="Business-email-permanent" class="block text-sm font-medium ">Business Email</label>
+                  <input type="text" id="Business-email-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="taluka-permanent" class="block text-sm font-medium ">Taluka/Tehsil</label>
+                  <input type="text" id="taluka-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="url" class="block text-sm font-medium ">URL</label>
+                  <input type="text" id="url" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="district-permanent" class="block text-sm font-medium ">District</label>
+                  <input type="text" id="district-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="emergency-no-permanent" class="block text-sm font-medium ">Emergency No.</label>
+                  <input type="text" id="emergency-no-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div>
+                  <label for="state-permanent" class="block text-sm font-medium ">State</label>
+                  <input type="text" id="state-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+                <div></div>
+                <div>
+                  <label for="country-permanent" class="block text-sm font-medium ">Country</label>
+                  <input type="text" id="country-permanent" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+
+              </div>
+            </form> 
+          </div>
+          <!-- Permanent Address Ends -->
+
+
+          <!-- Guardian's Information Start -->
+          <div class="guardian-information m-3 border-2 shadow-xl">
+            <form>
+              <p class="bg-gray-200 p-2 font-bold">Guardian's Information</p>
+              <div class="grid md:grid-cols-1 gap-4 p-2 pb-6 ">
+
+                <div class="">
+                  <label for="full-name" class="block text-sm font-medium ">Full Name</label>
+                  <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
+                    <div class="">
+                      <select name="" id="" class="mt-1 block border w-full border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                        <option value="none" disabled hidden selected>Select an Option</option>
+                        <option value="mr">MR</option>
+                        <option value="enr">ENR</option>
+                        <option value="dr">DR</option>
+                        <option value="mrs">MRS</option>
+                        <option value="ms">MS</option>
+                        <option value="prof">PROF</option>
+                      </select>
+                    </div>
+
+                    <input type="text" id="last-name" value="" placeholder="Last Name" class="block w-full md:w-1/4 border border-gray-300 rounded-md shadow-sm py-2 px-3">
+                    <input type="text" id="first-name" value="" placeholder="First Name" class="block w-full md:w-1/4 border border-gray-300 rounded-md shadow-sm py-2 px-3 ">
+                    <input type="text" id="middle-name" value="" placeholder="Middle Name" class="block w-full md:w-1/4 border border-gray-300 rounded-md shadow-sm py-2 px-3">
+                  </div>
+                </div>
+                <div>
+                  <label for="display-name-guardian" class="block text-sm font-medium ">Display Name</label>
+                  <input type="text" id="display-name-guardian" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label for="relation-guardian" class="block text-sm font-medium">Relation</label>
+                    <select name="" id="relation-guardian" class="mt-1 w-full block border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                      <option value="none" hidden disabled selected>Select an Option</option>
+                      <option value="father">Father</option>
+                      <option value="mother">Mother</option>
+                      <option value="brother">Brother</option>
+                      <option value="sister">Sister</option>
+                      <option value="uncle">Uncle</option>
+                      <option value="aunty">Aunty</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="qualification-guardian" class="block text-sm font-medium ">Qualification</label>
+                    <input type="text" id="qualification-guardian" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="service-type-guardian" class="block text-sm font-medium">Service Type</label>
+                    <select name="" id="service-type-guardian" class="mt-1 w-full block border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                      <option value="none" hidden disabled selected>Select an Option</option>
+                      <option value="service">Service</option>
+                      <option value="self-employed">Self Employed</option>
+                      <option value="retired">Retired</option>
+                      <option value="house-wife">House Wife</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="sector-type-guardian" class="block text-sm font-medium">Sector Type</label>
+                    <select name="" id="sector-type-guardian" class="mt-1 w-full block border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                      <option value="none" hidden disabled selected>Select an Option</option>
+                      <option value="government">Government</option>
+                      <option value="private">Private</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="occupation-guardian" class="block text-sm font-medium ">Desig./Occup</label>
+                    <input type="text" id="occupation-guardian" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="industry-type-guardian" class="block text-sm font-medium ">Industry Type</label>
+                    <input type="text" id="industry-type-guardian" value="" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  
+                  <div class="">
+                    <p class="font-bold mt-5">Contact Information</p>  
+                    <hr class="w-full mt-3">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 pb-6 text-gray-700">
+                  <div>
+                    <label for="room-number-guardian" class="block text-sm font-medium ">Room No./Flat No./Block No.</label>
+                    <input type="text" id="room-number-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="mobile-number-guardian" class="block text-sm font-medium ">Guardian's Mobile No</label>
+                    <input type="text" id="mobile-number-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="building-name-guardian" class="block text-sm font-medium ">Name of Building/ Premises/ Society/Sheri/Mahola</label>
+                    <input type="text" id="building-name-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="phone-number-guardian" class="block text-sm font-medium ">Guardian's Phone No</label>
+                    <input type="text" id="phone-number-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="landmark-guardian" class="block text-sm font-medium ">Land Mark/Road/ Area/Locality etc.</label>
+                    <input type="text" id="landmark-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div></div>
+                  <div>
+                    <label for="city-guardian" class="block text-sm font-medium ">City/Town/Village</label>
+                    <input type="text" id="city-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="personal-email-guardian" class="block text-sm font-medium ">Personal Email</label>
+                    <input type="text" id="personal-email-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="zip-code-guardian" class="block text-sm font-medium ">Zip/Postal Code</label>
+                    <input type="text" id="zip-code-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="Business-email-guardian" class="block text-sm font-medium ">Business Email</label>
+                    <input type="text" id="Business-email-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="taluka-guardian" class="block text-sm font-medium ">Taluka/Tehsil</label>
+                    <input type="text" id="taluka-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="url" class="block text-sm font-medium ">URL</label>
+                    <input type="text" id="url" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="district-guardian" class="block text-sm font-medium ">District</label>
+                    <input type="text" id="district-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="emergency-no-guardian" class="block text-sm font-medium ">Emergency No.</label>
+                    <input type="text" id="emergency-no-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div>
+                    <label for="state-guardian" class="block text-sm font-medium ">State</label>
+                    <input type="text" id="state-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+                  <div></div>
+                  <div>
+                    <label for="country-guardian" class="block text-sm font-medium ">Country</label>
+                    <input type="text" id="country-guardian" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+                  </div>
+  
+                </div>
+
+              </div>
+            </form>  
+          </div>
+          <!-- Guardian's Information Ends -->
+
+        </div>
+        <!-- User Edit Ends -->
+
+      </div>
+
+
+      <!-- Footer -->
+      <footer class="bg-black text-white box-in mt-4 py-5 items-center">
+        <p class="text-center">© All Rights Reserved</p>
+      </footer>
+    </div>
+
+  </body>
+</html>
