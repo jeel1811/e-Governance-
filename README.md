@@ -1,12 +1,13 @@
-# Collage e-Governance Project
+# College e-Governance Management Application
 
 ## Project Overview
 
-This project is developed as part of the Summer Internship 2024 at Jayshree Software. The goal of the project is to create a College e-Governance Payment Gateway system.
+This project is developed as part of the Summer Internship 2024 at Jayshree Software. The goal of the project is to create a comprehensive e-Governance platform for managing student information and enhancing user experience.
 
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Project Details](#project-details)
 - [Daily Progress](#daily-progress)
 - [Technologies Used](#technologies-used)
 - [Setup and Installation](#setup-and-installation)
@@ -16,7 +17,16 @@ This project is developed as part of the Summer Internship 2024 at Jayshree Soft
 
 ## Introduction
 
-This repository contains the code and documentation for the College e-Governance Payment Gateway project. The project aims to provide an efficient and secure way to handle online payments for college-related activities.
+This repository contains the code and documentation for the College e-Governance Management Application project. The project aims to provide an efficient and secure way to handle various administrative tasks related to student management, including user management, attendance tracking, timetable creation, and result management.
+
+## Project Details
+
+The internship focuses on developing a comprehensive platform for managing student information and enhancing user experience. This project includes:
+1. **Student Profile**: Managing and updating student personal and academic information.
+2. **User Management**: Handling user roles, permissions, and access controls.
+3. **Time Table**: Creating and managing class schedules and timetables.
+4. **Attendance Management**: Recording and tracking student attendance.
+5. **Result**: Managing and displaying student academic performance and grades.
 
 ## Daily Progress
 
@@ -40,33 +50,33 @@ This repository contains the code and documentation for the College e-Governance
 ### Week 2 (20/05/24 - 26/05/24)
 
 #### 20/05/24 (Monday)
-- Started Task 1.
+- Developed Home Page.
 
 #### 21/05/24 (Tuesday)
-- Continued working on Task 1.
+- Continued working on Home Page.
 
 #### 22/05/24 (Wednesday)
-- Started Task 2.
+- Created Time Table.
 
 #### 23/05/24 (Thursday)
-- Continued working on Task 2 and started Task 3.
+- Developed Attendance table which shows all the summary of attendance.
 
 #### 24/05/24 (Friday)
-- Worked on Task 4 and Task 5.
+- Worked on Attendance Responsive designing and Responsive Time Table.
 
 ### Week 3 (27/05/24 - 31/05/24)
 
 #### 27/05/24 (Monday)
-- Worked on Task 6 and Task 7.
+- Developed Menu Bar and Edit User Profile features.
 
 #### 28/05/24 (Tuesday)
-- Continued working on Task 7.
+- Continued working on Edit User Profile.
 
 #### 29/05/24 (Wednesday)
-- Started Task 8 and Task 9.
+- Developed Edit Academics Information and Update Permanent address features.
 
 #### 30/05/24 (Thursday)
-- Worked on Task 10.
+- Worked on the Governance Module.
 
 #### 31/05/24 (Friday)
 - Implemented a payment gateway using React and Express JS.
@@ -115,12 +125,12 @@ This repository contains the code and documentation for the College e-Governance
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/jeel1811/Collage-e-Governance.git
+    git clone https://github.com/jeel1811/College-e-Governance.git
     ```
 
 2. Navigate to the project directory:
     ```bash
-    cd Collage-e-Governance
+    cd College-e-Governance
     ```
 
 3. Install dependencies:
@@ -135,9 +145,9 @@ This repository contains the code and documentation for the College e-Governance
 
 ## Features
 
-- Responsive web design
-- Secure online payment gateway
-- Face recognition system
+- **Responsive Web Design**: Ensures compatibility with various devices.
+- **Secure Online Payment Gateway**: Integrated with Razorpay for handling payments.
+- **Face Recognition System**: Uses MediaPipe and MongoDB for facial recognition and data storage.
 
 ## Contributors
 
