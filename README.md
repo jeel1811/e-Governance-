@@ -121,28 +121,6 @@ The internship focuses on developing a comprehensive platform for managing stude
 - Razorpay API
 - MediaPipe
 
-## Setup and Installation
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/jeel1811/College-e-Governance.git
-    ```
-
-2. Navigate to the project directory:
-    ```bash
-    cd College-e-Governance
-    ```
-
-3. Install dependencies:
-    ```bash
-    npm install
-    ```
-
-4. Start the development server:
-    ```bash
-    npm start
-    ```
-
 ## Features
 
 - **Responsive Web Design**: Ensures compatibility with various devices.
